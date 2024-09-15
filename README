@@ -1,0 +1,29 @@
+meta-skarnet
+============
+
+This layer contains a set of recipes for skarnet.org's software. In particular,
+it contains all software required to build an s6-based init system.
+
+However, in keeping with skarnet's tradition of providing mechanism over
+policy, this layer attempts to focus on compiling and packaging. Also, if
+customizations are made, it is always done using a variable to let distribution
+maintainers use their own defaults.
+
+
+Dependencies
+------------
+
+This layer depends on:
+
+  URI: git://git.openembedded.org/openembedded-core
+  branch: master
+
+Maintenance
+-----------
+
+Please use github for pull requests: https://github.com/manquetin/meta-skarnet/pulls
+
+The github issue tracker (https://github.com/manquetin/meta-skarnet/issues) is
+being used to keep track of bugs.
+
+Maintainer: Mathieu Anquetin <mathieu@anquetin.eu>
