@@ -19,22 +19,19 @@ DEPENDS:prepend = "${@oe.utils.conditional('BPN', 'skalibs', '', 'skalibs', d)} 
 def get_sysdeps_opt(d):
     from re import search
 
-    sysdepdirdefault = oe.path.join(d.getVar('libdir'), 'skalibs', 'sysdeps')
-    sysdepdir = d.getVar('sysdepdir') or sysdepdirdefault
-
-    d.setVar('sysdepdir', sysdepdir)
-
-    stagingdir = ''
+    staging_libdir = ''
     if bb.data.inherits_class('native', d):
-        stagingdir = d.getVar('STAGING_DIR_NATIVE')
+        staging_libdir = d.getVar('STAGING_LIBDIR_NATIVE')
     else:
-        stagingdir = d.getVar('STAGING_DIR_TARGET')
+        staging_libdir = d.getVar('STAGING_LIBDIR')
 
     pn = d.getVar('PN')
     if search('skalibs', pn):
+        sysdepdir = oe.path.join(d.getVar('libdir'), 'skalibs', 'sysdeps')
         opt = '--sysdepdir=' + sysdepdir
     else:
-        opt = '--with-sysdeps=' + oe.path.join(stagingdir, sysdepdir)
+        sysdepdir = oe.path.join(staging_libdir, 'skalibs', 'sysdeps')
+        opt = '--with-sysdeps=' + sysdepdir
 
     return opt
 
