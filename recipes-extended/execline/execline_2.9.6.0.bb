@@ -1,15 +1,17 @@
-SUMMARY="A non-interactive scripting language"
-DESCRIPTION="execline is a (non-interactive) scripting language as powerful \
+SUMMARY = "A non-interactive scripting language"
+DESCRIPTION = "execline is a (non-interactive) scripting language as powerful \
 as a shell but with a far more logical and predictable syntax and with no \
 security issues."
-HOMEPAGE="https://skarnet.org/software/execline"
-SECTION="base"
+HOMEPAGE = "https://skarnet.org/software/execline"
+SECTION = "base"
 
 LICENSE = "ISC"
 LIC_FILES_CHKSUM = "file://COPYING;md5=c92b5c6593e97d6cc9bcb4892128e2b8"
 
 SRC_URI = "https://skarnet.org/software/${BPN}/${BPN}-${PV}.tar.gz"
 SRC_URI[sha256sum] = "ba2a27e97c5eb6bd7ca6a0987a8925e44465a5be996daa0d18f8feca37d7571a"
+
+PACKAGES =+ "libexecline"
 
 inherit skarnet
 
@@ -29,6 +31,8 @@ do_install:append () {
             > "${D}${sysconfdir}/execline.links"
     fi
 }
+
+FILES:libexecline = "${libdir}/lib*${SOLIBS}"
 
 inherit update-alternatives
 
