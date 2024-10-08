@@ -33,6 +33,6 @@ SYSDEPS_CONFARGS:class-native = ""
 
 EXTRA_OECONF:append = " ${SYSDEPS_CONFARGS}"
 
-FILES:${PN}-dev += "${sysdepdir}"
+FILES:${PN}-dev += "${libdir}/skalibs/sysdeps"
 
 BBCLASSEXTEND = "native nativesdk"
