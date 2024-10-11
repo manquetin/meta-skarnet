@@ -19,17 +19,12 @@ DEPENDS:prepend = "${@oe.utils.conditional('BPN', 'skalibs', '', 'skalibs', d)} 
 def get_sysdeps_opt(d):
     from re import search
 
-    staging_libdir = ''
-    if bb.data.inherits_class('native', d):
-        staging_libdir = d.getVar('STAGING_LIBDIR_NATIVE')
-    else:
-        staging_libdir = d.getVar('STAGING_LIBDIR')
-
     pn = d.getVar('PN')
     if search('skalibs', pn):
         sysdepdir = oe.path.join(d.getVar('libdir'), 'skalibs', 'sysdeps')
         opt = '--sysdepdir=' + sysdepdir
     else:
+        staging_libdir = d.getVar('STAGING_LIBDIR')
         sysdepdir = oe.path.join(staging_libdir, 'skalibs', 'sysdeps')
         opt = '--with-sysdeps=' + sysdepdir
 
@@ -44,19 +39,10 @@ CONFIGUREOPTS = " --build=${BUILD_SYS} \
                   --includedir=${includedir} \
                   --sysconfdir=${sysconfdir} \
                   ${@get_sysdeps_opt(d)} \
-                  ${DEPENDENCIESOPTS} \
+                  --with-include=${STAGING_INCDIR} \
+                  --with-lib=${STAGING_LIBDIR} \
+                  --with-dynlib=${STAGING_LIBDIR} \
                   --enable-shared"
-
-DEPENDENCIESOPTS = " \
-    --with-include=${STAGING_INCDIR} \
-    --with-lib=${STAGING_LIBDIR} \
-    --with-dynlib=${STAGING_LIBDIR} \
-"
-DEPENDENCIESOPTS:class-native = " \
-    --with-include=${STAGING_INCDIR_NATIVE} \
-    --with-lib=${STAGING_LIBDIR_NATIVE} \
-    --with-dynlib=${STAGING_LIBDIR_NATIVE} \
-"
 
 EXTRA_OECONF:append = " ${PACKAGECONFIG_CONFARGS}"
 
