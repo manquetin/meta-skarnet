@@ -19,6 +19,11 @@ PACKAGECONFIG ??= "multicall"
 PACKAGECONFIG:class-native = ""
 PACKAGECONFIG:class-nativesdk = ""
 PACKAGECONFIG[multicall] = "--enable-multicall,--disable-multicall"
+PACKAGECONFIG[nsss] = "\
+    --enable-nsss --with-include=${STAGING_INCDIR}/nsss, \
+    --disable-nsss,\
+    nsss \
+"
 PACKAGECONFIG[pedantic-posix] = "--enable-pedantic-posix,--disable-pedantic-posix"
 
 do_install:append () {
