@@ -16,6 +16,11 @@ inherit skarnet
 
 PACKAGECONFIG ??= "execline"
 PACKAGECONFIG[execline] = "--enable-execline,--disable-execline,execline"
+PACKAGECONFIG[nsss] = "\
+    --enable-nsss --with-include=${STAGING_INCDIR}/nsss, \
+    --disable-nsss,\
+    nsss \
+"
 
 FILES:libs6 = "${libdir}/lib*${SOLIBS}"
 
