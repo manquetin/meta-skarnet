@@ -21,9 +21,9 @@ This layer depends on:
 Maintenance
 -----------
 
-Please use github for pull requests: https://github.com/manquetin/meta-skarnet/pulls
+Please use codeberg for pull requests: https://codeberg.org/manquetin/meta-skarnet/pulls
 
-The github issue tracker (https://github.com/manquetin/meta-skarnet/issues) is
+The codeberg issue tracker (https://codeberg.org/manquetin/meta-skarnet/issues) is
 being used to keep track of bugs.
 
 Maintainer: Mathieu Anquetin <mathieu@anquetin.eu>
